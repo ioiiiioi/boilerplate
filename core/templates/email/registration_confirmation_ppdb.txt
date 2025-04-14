@@ -1,0 +1,12 @@
+Halo,{% if applicant_full_name %} {{ applicant_full_name }},{% endif %}
+
+berikut kami informasikan bawha pendaftaran Anda telah berhasil kami terima dengan rincian sebagai berikut:
+
+Nama Peserta: {{ applicant_full_name }}
+ID Pendaftaran: {{ registration_code }}
+Tanggal Lahir: {{ applicant_birthday }}
+Jenjang yang Dituju: {{ school }}
+
+Pastikan untuk memantau informasi terkait pengumuman hasil seleksi di website resmi kami atau melalui email ini, Silakan hubungi bagian SPMB Official pada kontak berikut jika ada pertanyaan:
+Email: {{ official_email }}
+Whatsapp: {{ official_contact }}

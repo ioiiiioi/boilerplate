@@ -1,0 +1,25 @@
+Pengumuman Penerimaan Peserta Didik Baru (SPMB)
+Halo, {{ applicant_full_name }},
+
+Kepada peserta penerimaan peserta didik baru {{ school_name }} dengan data sebagai berikut.
+
+Nama Peserta: {{ applicant_full_name }}
+
+ID Pendaftaran: {{ registration_code }}
+
+Tanggal Lahir: {{ applicant_birthday }}
+
+Jenjang yang Dituju: {{ school_level }}
+
+Mohon Maaf Anda dinyatakan TIDAK LULUS seleksi SPMB {{ school_name }} jalur {{ registration_type }} untuk tahun akademik {{ school_academic_year }} di Sekolah {{ school_name }}.
+
+Keputusan ini diambil setelah melalui proses seleksi yang ketat sesuai dengan kriteria yang telah ditetapkan. Kami memahami bahwa ini mungkin bukan hasil yang diharapkan. Namun, kami percaya bahwa semangat Anda untuk terus belajar akan membawa Anda kepada kesempatan lain yang lebih baik di masa depan.
+
+Silahkan hubungi bagian SPMB {{ school_name }} pada kontak berikut jika ada pertanyaan.
+
+Email: {{ official_email }}
+
+Whatsapp: {{ official_contact }}
+
+Salam,
+Panitia SPMB {{ official_name }}

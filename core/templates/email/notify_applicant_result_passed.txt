@@ -1,0 +1,23 @@
+Pengumuman Penerimaan Peserta Didik Baru (SPMB)
+Halo, {{ applicant_full_name }},
+
+Kepada peserta penerimaan peserta didik baru {{ school_name }} dengan data sebagai berikut.
+
+Nama Peserta: {{ applicant_full_name }}
+
+ID Pendaftaran: {{ registration_code }}
+
+Tanggal Lahir: {{ applicant_birthday }}
+
+Jenjang yang Dituju: {{ school_level }}
+
+Selamant Anda dinyatakan LULUS seleksi SPMB {{ school_name }} jalur {{ registration_type }} untuk tahun akademik {{ school_academic_year }} di Sekolah {{ school_name }}.
+
+Silahkan hubungi bagian SPMB {{ school_name }} pada kontak berikut jika ada pertanyaan.
+
+Email: {{ official_email }}
+
+Whatsapp: {{ official_contact }}
+
+Salam,
+Panitia SPMB {{ official_name }}
