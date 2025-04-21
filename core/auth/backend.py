@@ -6,6 +6,7 @@ from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 from django.contrib.auth.backends import ModelBackend
+from django.contrib.auth.forms import AuthenticationForm
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import AnonymousUser
@@ -248,9 +249,8 @@ class AuthenticateNewMixins:
                 raise AuthenticationFailed(err_msg)
             raise AuthenticationFailed() from None
         else:
-            if err_msg:
-                raise ValidationError(err_msg)
-            raise ValidationError("invalid_username_password") from None
+            AuthenticationForm.error_messages = err_msg
+            return 
 
     def __get_user(self, host, params):
         with contextlib.suppress(ObjectDoesNotExist, MultipleObjectsReturned):
@@ -280,34 +280,13 @@ class AuthenticateNewMixins:
 
         user = self.__get_user(host, filter_params)
 
-        if not "api" in host:
-            return user
-
-        # if user.user_type is None:
-        #     raise PermissionDenied("user_type_not_set.")
-
-        # if user.user_type not in [
-        #     "official1",
-        #     "official2",
-        #     "foundation",
-        #     "college_user",
-        #     "applicant",
-        # ]:
-        #     if not school:
-        #         err_msg = "school_id_required"
-        #         raise self.error_raiser(host, err_msg)
-
-        #     if school and user.school.id != int(school):
-        #         err_msg = "user_not_found_or_invalid_school_id"
-        #         self.error_raiser(host, err_msg)
-        # else:
-        #     if school:
-        #         err_msg = "invalid_login_form"
-        #         self.error_raiser(host, err_msg)
-        
         if not user.check_password(password):
             err_msg = "invalid_username_password"
             self.error_raiser(host, err_msg)
+
+        if not "api" in host:
+            return user
+
 
         if user.is_deleted:
             err_msg = "user_has_been_deleted"
