@@ -1,3 +1,7 @@
+# TODO: Delete this entire file - all code is commented out and storage backend is not configured
+# If you need AWS S3 storage, uncomment and configure properly (and add boto3/django-storages to dependencies)
+# Otherwise remove this file completely
+
 # from django.conf import settings as django_settings
 # from django.utils.deconstruct import deconstructible
 # from storages.backends.s3boto3 import S3Boto3Storage

@@ -54,7 +54,7 @@ class CacheUserSlimSerializer(ModelSerializer):
     class Meta:
         model = USER
         fields = [
-            "id"
+            "id",  # Fixed: Added missing comma
             "username",
             "first_name",
             "last_name",
@@ -95,9 +95,11 @@ class CustomBlacklistMixins:
         token = super().for_user(user)  # type: ignore
 
         token["x-auth-services-num"] = str(uuid.uuid4().hex)
+        # TODO: Remove school-related code - User model doesn't have 'school' field in boilerplate
         if user.school:
             token["school_id"] = user.school.id
         
+        # TODO: Add IS_SINGLE_LOGIN to settings.base.py or remove this feature
         if settings.IS_SINGLE_LOGIN:
             DEFAULT_CACHE.delete_pattern(f"token:{user.id}:*")
         
@@ -112,6 +114,7 @@ class CustomBlacklistMixins:
             timeout=int(api_settings.REFRESH_TOKEN_LIFETIME.total_seconds()),
         )
         user.last_login = timezone.now()
+        # TODO: Remove session_login_id - User model doesn't have this field in boilerplate
         user.session_login_id = None
         user.save()
         return token
@@ -287,7 +290,8 @@ class AuthenticateNewMixins:
         if not "api" in host:
             return user
 
-
+        # TODO: Remove is_deleted check - User model doesn't have this field in boilerplate
+        # If soft delete is needed, add is_deleted field to User model first
         if user.is_deleted:
             err_msg = "user_has_been_deleted"
             self.error_raiser(host, err_msg)

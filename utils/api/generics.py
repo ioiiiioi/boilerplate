@@ -28,6 +28,7 @@ def secure_query_dict(data: QueryDict):
     return copy_data
 
 
+# TODO: LoggingViewMixins is defined but never used - remove this class or use it in views
 class LoggingViewMixins:
 
     def create(self, request, *args, **kwargs):

@@ -1,3 +1,6 @@
+# TODO: Delete this entire file - all code is commented out and this middleware is not being used
+# If you need cut-off functionality, uncomment and configure properly, otherwise remove this file
+
 # import json
 
 # from django.conf import settings

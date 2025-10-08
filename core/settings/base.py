@@ -28,10 +28,12 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", default=False, cast=bool)
 
-ALLOWED_HOSTS = ["*"]
+# TODO: SECURITY ISSUE - Change ALLOWED_HOSTS from ["*"] to specific domains in production
+ALLOWED_HOSTS = ["*"]  # INSECURE: Allows all hosts
 
 # CORS settings
-CORS_ORIGIN_ALLOW_ALL = True
+# TODO: SECURITY ISSUE - Change CORS_ORIGIN_ALLOW_ALL to False and specify allowed origins in production
+CORS_ORIGIN_ALLOW_ALL = True  # INSECURE: Allows all origins
 CORS_ALLOW_HEADERS = [
     "accept",
     "accept-encoding",
@@ -195,8 +197,9 @@ SPECTACULAR_SETTINGS = {
 # Rest Framework
 REST_FRAMEWORK = {
     "DEFAULT_VERSIONING_CLASS": "rest_framework.versioning.URLPathVersioning",
-    "DEFAULT_VERSION": "v2",
+    "DEFAULT_VERSION": "v2",  # TODO: Verify if v2 is correct - only v1 urls exist in core/urls/
     "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.IsAuthenticated"],
+    # TODO: Uncomment and configure pagination if needed
     # "DEFAULT_PAGINATION_CLASS": "core.base.views.CustomPagination",
     "PAGE_SIZE": 10,
     "EXCEPTION_HANDLER": "utils.api.exception_handler.detailed_exception_handler",
@@ -207,12 +210,16 @@ REST_FRAMEWORK = {
     ],
     "DEFAULT_AUTHENTICATION_CLASSES": ("core.auth.backend.UserAuthorization",),
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    # TODO: Uncomment and configure throttle rates if needed, remove project-specific "applicant_signup"
     # "DEFAULT_THROTTLE_RATES": {
     #     "anon": "500/day",  # 500 permintaan per hari untuk pengguna anonim
     #     "applicant_signup": "5/min",  # Adjust rate as needed
     # },
 }
 
+
+# TODO: Add IS_SINGLE_LOGIN setting - referenced in core/auth/backend.py but not defined
+# IS_SINGLE_LOGIN = config("IS_SINGLE_LOGIN", default=False, cast=bool)
 
 # Django cache and redis
 REDIS_HOST = config("REDIS_HOST")

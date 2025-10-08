@@ -1,4 +1,5 @@
 # utils/cache_manager.py
+# TODO: CacheManager is defined but never used in the codebase - remove if not needed
 from django.core.cache import cache
 from django.db.models import Model
 import hashlib

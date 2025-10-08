@@ -14,6 +14,18 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+# TODO: This file is incomplete - it doesn't include API urls from core/urls/v1.py
+# Add proper URL configuration for API versioning and documentation
+# Example:
+#   from django.urls import include
+#   from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
+#   urlpatterns = [
+#       path('admin/', admin.site.urls),
+#       path('api/v1/', include('core.urls.v1')),
+#       path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+#       path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+#   ]
+
 from django.contrib import admin
 from django.urls import path
 

@@ -1,3 +1,6 @@
+# TODO: Delete this entire file - all code is commented out and auth views are implemented in apps/user/views.py
+# If this was an alternative implementation, either use it or remove it completely
+
 # from django.contrib.auth import logout
 # from django.utils.translation import gettext as _
 # from drf_spectacular.utils import OpenApiResponse, extend_schema

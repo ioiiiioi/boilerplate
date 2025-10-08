@@ -23,18 +23,19 @@ class LoginSerializerV2(serializers.Serializer):
     status = serializers.CharField(read_only=True)
     is_staff = serializers.BooleanField(read_only=True)
     last_login = serializers.DateTimeField(read_only=True)
-    gender = serializers.CharField(read_only=True)
+    gender = serializers.CharField(read_only=True)  # TODO: Remove - User model doesn't have gender field
 
     def login_with_email(
         self, email: str, password: str, school_id: int = None
     ) -> User:
+        # TODO: Remove school_id parameter - User model doesn't have school relation in boilerplate
         authenticate_kwargs = {
             "email": email,
             "password": password,
             "raise_api_exception": True,
             "username": None,
-            "school": school_id,
-            "user_type": None,
+            "school": school_id,  # TODO: Remove this - not used in boilerplate
+            "user_type": None,  # TODO: Remove this - not used in boilerplate
         }
 
         if "request" in self.context:
@@ -62,7 +63,7 @@ class LoginSerializerV2(serializers.Serializer):
     def validate(self, attrs):
         username = attrs.get("login", None)
         email = attrs.get("email", None)
-        school_id = attrs.get("school_id", None)
+        school_id = attrs.get("school_id", None)  # TODO: Remove - not used in boilerplate
         password = attrs.get("password")
 
         if password in ["", " ", None, "null"]:
@@ -91,7 +92,7 @@ class LoginSerializerV2(serializers.Serializer):
         ret["username"] = instance.username
         ret["email"] = instance.email
         ret["name"] = instance.get_full_name()
-        ret["google_info"] = self.add_google_info(instance)
+        ret["google_info"] = self.add_google_info(instance)  # TODO: Define add_google_info method or remove this line
         ret["last_login"] = (
             instance.last_login.strftime("%Y-%m-%dT%H:%M:%S%z")
             if isinstance(instance.last_login, datetime)
@@ -99,10 +100,11 @@ class LoginSerializerV2(serializers.Serializer):
         )
         ret["status"] = "success"
         ret["is_staff"] = instance.is_staff
-        # ret["picture"] = self.user_picture(),
+        # ret["picture"] = self.user_picture(),  # TODO: Uncomment and fix or remove completely
         
         return ret
    
+    # TODO: Delete user_picture method if not needed, or uncomment and fix the implementation
     # def user_picture(self, profile):
     #     print(profile.picture, "<---- PIC")
     #     return (

@@ -1,3 +1,7 @@
+# TODO: Rename this file from 'docker-compose..yaml' to 'docker-compose.yaml' (remove double dots)
+# TODO: Create Dockerfile - referenced by 'build: .' but doesn't exist
+# TODO: Add database service (PostgreSQL) - settings.py requires it but it's not in docker-compose
+
 version: "3.9"
 
 services:
@@ -8,7 +12,7 @@ services:
       - "6379:6379"
 
   web:
-    build: .
+    build: .  # TODO: Create Dockerfile for this to work
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/app

@@ -16,8 +16,10 @@ class UserCreatorModels(TimeStampedModels):
     """
     Abstract base class that provides a 'created_by' field.
     """
+    # TODO: Fix incorrect model reference - should be "user.User" not "users.User"
+    # Or remove this model if not needed in boilerplate
     created_by = models.ForeignKey(
-        "users.User",
+        "users.User",  # BUG: Should be "user.User" (app name is 'user' not 'users')
         on_delete=models.CASCADE,
         related_name="%(class)s_created_by",
         null=True,
